@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Annonymous - A Social Media Anonymous App
 
+Anonymous is a social media web app that allows users to share their thoughts without revealing their identity.
+
+Key Features:
+
+Anonymity: Post and interact without disclosing your personal information.
+User-Friendly Interface: Easy navigation and clean design.
+Real-Time Updates: See new posts and interactions as they happen.
+Upcoming Features:
+
+Enhanced Privacy Controls: More options to control your anonymous interactions.
+Expanded Interaction Tools: New ways to engage with posts and users.
+Customizable Profiles: Personalize your anonymous presence.
+Stay tuned for more updates and exciting features!
+
+
+
+
+## Author
+
+- [@iutkarsh077](https://github.com/iutkarsh077)
+
+
+## Deployed at Vercel
+
+Insert gif or link to demo
+https://meta-convo.vercel.app/
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`MONGODB_URL`
+
+`RESEND_API_KEY`
+`JWT_SECRET_KEY`
+`CLOUD_NAME`
+`CLOUDINARY_API_KEY`
+`CLOUDINARY_API_SECRET`
+
+## 🚀 About Me
+I'm a full stack developer...
+
+I am a second year student at IK Gujral Punjab Technical University pursuing a bachelor’s degree in Computer Science Engineering || MERN Developer
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://iutkarsh077.github.io/Portfolio/)
+
+
+## Installation
+
+Install my-project with npm
 First, run the development server:
-
 ```bash
-npm run dev
+  npm run dev
 # or
 yarn dev
 # or
 pnpm dev
 # or
 bun dev
+
+# and
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project uses next/font to automatically optimize and load Inter, a custom Google Font.
+    
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Client:** React, TailwindCSS, NextJs 14, shadcn
 
-## Learn More
+**Server:** Node, Express, Mongodb, JWT etc
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![App Screenshot](https://i.postimg.cc/bYW9fX4d/anon-homepage.png)
+![App Screenshot](https://i.postimg.cc/hjqBm2GK/post-page.png)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
