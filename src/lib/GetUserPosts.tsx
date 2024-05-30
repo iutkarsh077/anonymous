@@ -6,6 +6,7 @@ export async function GetUserPosts(){
           headers: {
             "Content-Type": "application/json",
           },
+          cache: 'no-store'
         })
       ).json();
 
