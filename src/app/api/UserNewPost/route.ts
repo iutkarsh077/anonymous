@@ -7,6 +7,7 @@ export async function GET() {
     try {
         const posts: any[] = (await postDetailsModel.find()).sort((a: any, b: any) => b.createdAt - a.createdAt);
         console.log(posts);
+        console.log("IN UserNewPOst route");
         return NextResponse.json({ status: true, posts }, { status: 200 })
     } catch (error) {
         console.log(error);

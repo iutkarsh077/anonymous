@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const cookieStore = cookies();
     const image = formData.get("file") as File;
     const text = formData.get("text") as string;
-
+    console.log(formData.get("file"))
     const userCookie = cookieStore.get("anonymousUser")?.value;
     try {
         const CloudinaryImageLink = await uploadImageCloudinary(image, "posts") as CloudinaryUploadResult;
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
             likes: 0
         })
 
-        // console.log(createPost);
+        console.log(createPost);
 
         return NextResponse.json({ message: "Post uploaded successfully!" }, { status: 201 });
     } catch (error) {

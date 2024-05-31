@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 import GetUserPosts from "@/lib/GetUserPosts";
 import { UserContext } from "@/context/GlobalContextProvider";
 import { useToast } from "@/components/ui/use-toast"
-import Image from "next/image";
 
 const MyHome = () => {
   const { toast } = useToast();
@@ -14,7 +13,7 @@ const MyHome = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<UserPostType[]>();
   const [errorOccured, setErrorOccured] = useState(true);
-  const [getPosts, setGetPosts] = useState(true);
+  // const [getPosts, setGetPosts] = useState(true);
 
   const fetchPosts = async () => {
     try {
@@ -22,22 +21,27 @@ const MyHome = () => {
       const res = await GetUserPosts();
       setPosts(res);
       setErrorOccured(false);
-      // console.log(res);
+      console.log(res);
     } catch (error) {
       setErrorOccured(true);
-      // console.log("Error");
+      console.log("Error");
     } finally {
       setLoading(false);
-      // console.log("Finally");
+      console.log("Finally");
     }
   };
 
-  useMemo(() => {
+ /* useMemo(() => {
     if (getPosts) {
       setGetPosts(false);
       fetchPosts();
     }
-  }, [getPosts]);
+  }, [getPosts]);*/
+
+  useEffect(() => {
+    console.log("Run")
+    fetchPosts();
+  }, []);
 
   if (loading)
     return (
@@ -91,20 +95,20 @@ const MyHome = () => {
 
       const res2 = await GetUserPosts();
       setPosts(res2);
-      // console.log("Post liked successfully", res2);
+      console.log("Post liked successfully", res2);
     } catch (error) {
       // Handle network or other errors
-      // console.error("Error liking the post:", error);
+      console.error("Error liking the post:", error);
     }
   };
-  // console.log("Hii");
+  console.log("Hii");
 
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
   
   const handleSharePost = async (postId: string) => {
     const profileUrl = `${baseUrl}/share/${postId}`;
     navigator.clipboard.writeText(profileUrl);
-    // console.log(profileUrl)
+    console.log(profileUrl)
     toast({
       title: "URL Copied!",
       description: "Profile URL has been copied to clipboard.",
