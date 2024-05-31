@@ -1,14 +1,15 @@
 "use client";
-import React, { cache, useContext,  useEffect,  useState } from "react";
+import React, { cache, useContext, useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserPostType } from "@/types/PostData";
 import { Button } from "../ui/button";
 import { UserContext } from "@/context/GlobalContextProvider";
 import { useToast } from "@/components/ui/use-toast";
-import axios from 'axios';
+import axios from "axios";
 import GetUserPosts from "@/lib/GetUserPosts";
+import { User } from "@/types/PostData";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const MyHome = () => {
   const { toast } = useToast();
@@ -24,7 +25,6 @@ const MyHome = () => {
       headers: {
         "Content-Type": "application/json",
       },
-
     });
     const data = await response.json();
     console.log(data);
@@ -39,10 +39,10 @@ const MyHome = () => {
       setErrorOccured(true);
     }
   };
-  
-    useEffect(()=>{ 
-      fetchPosts();
-    }, [])
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   if (loading)
     return (
@@ -58,7 +58,7 @@ const MyHome = () => {
   if (errorOccured) {
     return (
       <div className="flex flex-col h-screen fixed left-[700px] top-80 space-y-3">
-        <Button  className="flex gap-x-5">
+        <Button className="flex gap-x-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -93,8 +93,7 @@ const MyHome = () => {
         },
         body: JSON.stringify(MyId),
       });
-      const res2 = await GetUserPosts();
-      setPosts(res2);
+      fetchPosts();
     } catch (error) {
       setErrorOccured(true);
       // Handle network or other errors
@@ -104,17 +103,16 @@ const MyHome = () => {
   console.log("Hii");
 
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
-  
+
   const handleSharePost = async (postId: string) => {
     const profileUrl = `${baseUrl}/share/${postId}`;
     navigator.clipboard.writeText(profileUrl);
-    console.log(profileUrl)
+    console.log(profileUrl);
     toast({
       title: "URL Copied!",
       description: "Profile URL has been copied to clipboard.",
     });
-  }
-
+  };
 
   return (
     <div className="overflow-x-hidden flex  justify-center mt-2 h-screen ">
@@ -134,7 +132,14 @@ const MyHome = () => {
                   />
                   <span className="text-lg font-semibold">{post.username}</span>
                 </span>
-                <Button className="mb-4" onClick={() => {handleSharePost(post._id)}}>Share</Button>
+                <Button
+                  className="mb-4"
+                  onClick={() => {
+                    handleSharePost(post._id);
+                  }}
+                >
+                  Share
+                </Button>
               </p>
               <img
                 src={post.image}

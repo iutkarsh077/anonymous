@@ -4,6 +4,12 @@ export interface IsUserLikes{
   }
 
 
+  export interface User{
+    _id: string,
+    userId: string,
+    createdAt: Date
+  }
+
 export interface UserPostType {
     _id: string,
     username: string,
