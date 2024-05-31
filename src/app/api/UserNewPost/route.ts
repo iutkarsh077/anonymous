@@ -1,11 +1,11 @@
 import dbConnect from '@/DbConnect';
 import postDetailsModel from '@/models/PostDetails';
 import { NextResponse } from 'next/server';
-
+export const dynamic = 'force-dynamic';
 export async function GET() {
     await dbConnect();
     try {
-        const posts: any[] = (await postDetailsModel.find()).sort((a: any, b: any) => b.createdAt - a.createdAt);
+        const posts = await postDetailsModel.find();
         console.log(posts);
         console.log("IN UserNewPOst route");
         return NextResponse.json({ status: true, posts }, { status: 200 })

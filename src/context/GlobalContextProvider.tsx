@@ -29,6 +29,10 @@ const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
           headers: {
             "Content-Type": "application/json",
           },
+          cache: "no-cache",
+          next: {
+            revalidate: 10000,
+          }
         });
         const data = await response.json();
         setUserDetails({

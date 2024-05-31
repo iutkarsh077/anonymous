@@ -1,6 +1,7 @@
 import dbConnect from "@/DbConnect";
 import { NextResponse } from "next/server";
 import postDetailsModel from '@/models/PostDetails'
+export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
     const { userId, myUserId } = await req.json();
 
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
             await IsUserAlreadyLiked.save();
 
 
-            return NextResponse.json({ status: false, msg: "Post Unliked Successfully" }, { status: 201 });
+            return NextResponse.json({ status: true, msg: "Post Unliked Successfully" }, { status: 201 });
         }
 
         else {

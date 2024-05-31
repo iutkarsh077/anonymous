@@ -1,11 +1,14 @@
 "use client";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { cache, useContext,  useEffect,  useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserPostType } from "@/types/PostData";
 import { Button } from "../ui/button";
-import GetUserPosts from "@/lib/GetUserPosts";
 import { UserContext } from "@/context/GlobalContextProvider";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
+import axios from 'axios';
+import GetUserPosts from "@/lib/GetUserPosts";
+
+export const dynamic = 'force-dynamic';
 
 const MyHome = () => {
   const { toast } = useToast();
@@ -13,35 +16,33 @@ const MyHome = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<UserPostType[]>();
   const [errorOccured, setErrorOccured] = useState(true);
-  // const [getPosts, setGetPosts] = useState(true);
 
   const fetchPosts = async () => {
+    setLoading(true);
+    const response = await fetch("/api/UserNewPost", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    const data = await response.json();
+    console.log(data);
+    setPosts(data.posts);
     try {
       setLoading(true);
-      const res = await GetUserPosts();
-      setPosts(res);
-      setErrorOccured(false);
-      console.log(res);
-    } catch (error) {
-      setErrorOccured(true);
-      console.log("Error");
-    } finally {
       setLoading(false);
-      console.log("Finally");
+      setErrorOccured(false);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      setLoading(false);
+      setErrorOccured(true);
     }
   };
-
- /* useMemo(() => {
-    if (getPosts) {
-      setGetPosts(false);
+  
+    useEffect(()=>{ 
       fetchPosts();
-    }
-  }, [getPosts]);*/
-
-  useEffect(() => {
-    console.log("Run")
-    fetchPosts();
-  }, []);
+    }, [])
 
   if (loading)
     return (
@@ -57,7 +58,7 @@ const MyHome = () => {
   if (errorOccured) {
     return (
       <div className="flex flex-col h-screen fixed left-[700px] top-80 space-y-3">
-        <Button onClick={fetchPosts} className="flex gap-x-5">
+        <Button  className="flex gap-x-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -92,11 +93,10 @@ const MyHome = () => {
         },
         body: JSON.stringify(MyId),
       });
-
       const res2 = await GetUserPosts();
       setPosts(res2);
-      console.log("Post liked successfully", res2);
     } catch (error) {
+      setErrorOccured(true);
       // Handle network or other errors
       console.error("Error liking the post:", error);
     }

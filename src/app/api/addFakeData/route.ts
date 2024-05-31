@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-// import data from '../../../data.json';
 // import bcryptjs from 'bcryptjs';
 // import anonymousSignUpModel from '@/models/signupModel';
 import postData from "@/postData.json";
 import postDetailsModel from '@/models/PostDetails';
 import dbConnect from '@/DbConnect';
+export const dynamic = 'force-dynamic';
 export async function GET(req: Request) {
     try {
         dbConnect();
