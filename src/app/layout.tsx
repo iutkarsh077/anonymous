@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import GlobalContextProvider from "@/context/GlobalContextProvider";
-import NextAuthProvider from "@/context/NextAuthProvider";
 
 export const metadata: Metadata = {
   title: "Anonymous",
