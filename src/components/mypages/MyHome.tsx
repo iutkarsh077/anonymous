@@ -17,6 +17,7 @@ const MyHome = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<UserPostType[]>();
   const [errorOccured, setErrorOccured] = useState(true);
+  const [dataTrue, setDataTrue] = useState(false);
 
   const fetchPosts = async () => {
     setLoading(true);
