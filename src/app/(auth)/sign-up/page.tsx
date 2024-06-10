@@ -21,9 +21,9 @@ import { useEffect, useState } from "react";
 import OtpVerify from "@/components/CustomComponents/Otp";
 const SignUp = () => {
   const [username, setUsername] = useState("");
+  const debouncedUserName = useDebounceCallback(setUsername, 500);
   const [userNameMessage, setUsernameMessage] = useState<String>("");
   const [checkingUsername, setcheckingUsername] = useState<boolean>(false);
-  const debouncedUserName = useDebounceCallback(setUsername, 500);
   const [isSignupButtonClicked, setIsSignupButtonClicked] =
     useState<boolean>(false);
   const [RenderOtpComponent, setRenderOtpComponent] = useState<boolean>(false);

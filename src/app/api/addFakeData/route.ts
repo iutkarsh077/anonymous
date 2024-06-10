@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 // import bcryptjs from 'bcryptjs';
-// import anonymousSignUpModel from '@/models/signupModel';
+import anonymousSignUpModel from '@/models/signupModel';
 import postData from "@/postData.json";
 import postDetailsModel from '@/models/PostDetails';
 import dbConnect from '@/DbConnect';
@@ -26,14 +26,15 @@ export async function GET(req: Request) {
         }  */
 
 
-        for (const post of postData) {
+
+        /*for (const post of postData) {
             const newPost = await postDetailsModel.create({
                 username: post.username,
                 image: post.image,
                 description: post.description,
                 likes: post.likes
             })
-        }
+        }*/
         return NextResponse.json({ status: true, data: "Done User post set" }, { status: 201 });
     } catch (error) {
         console.log(error);

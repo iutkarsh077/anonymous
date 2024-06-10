@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     await dbConnect();
     try {
-        const posts = await postDetailsModel.find();
+        const posts = await postDetailsModel.find().sort({ createdAt: -1 });
         console.log(posts);
         console.log("IN UserNewPOst route");
         return NextResponse.json({ status: true, posts }, { status: 200 })

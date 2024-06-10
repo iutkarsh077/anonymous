@@ -16,7 +16,7 @@ const UserPost = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let file = event.target.files ? event.target.files[0] : null;
-    if (file?.type === "application/pdf") {
+    if (file?.type === "application/pdf" || file?.type === "application/msword" || file?.type === "video/mp4" || file?.type === "application/x-zip-compressed") {
       toast({
         title: "Unsupported file type",
         description: "Please upload an image file",

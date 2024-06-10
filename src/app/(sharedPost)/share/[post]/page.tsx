@@ -8,8 +8,8 @@ import Navbar from "@/components/CustomComponents/Navbar";
 import Image from "next/image";
 
 const SharedPost = ({ params }: { params: { post: string } }) => {
-  const { toast } = useToast();
   const [posts, setPosts] = useState<any>();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [errorOccurred, setErrorOccurred] = useState(false);
 
