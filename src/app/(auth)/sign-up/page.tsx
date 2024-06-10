@@ -79,7 +79,7 @@ const SignUp = () => {
     <>
       <div className="w-screen h-screen bg-gradient-to-b from-black to-gray-500 flex justify-center items-center">
         <div className="w-3/4 h-3/4 flex">
-          <div className="flex w-1/2">
+          <div className="hidden md:flex md:w-1/2">
             <Image
               src="/images/signup.png"
               alt="sign-up"
@@ -89,7 +89,7 @@ const SignUp = () => {
               quality={100}
             />
           </div>
-          <div className="bg-gray-700 w-1/2 flex justify-center items-center">
+          <div className="bg-gray-700 w-full md:w-1/2 flex justify-center items-center">
             <div>
               <Form {...form}>
                 <form
