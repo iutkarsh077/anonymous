@@ -48,15 +48,15 @@ const ShowMyPosts = ({ Myposts }: { Myposts: any[] }) => {
   };
 
   return (
-    <div className="min-h-96 mt-20 mx-10 ml-48 mr-48">
-      <div className="text-3xl bg-blue-900 font-semibold text-white p-4 mb-4 rounded-t-lg">
+    <div className="min-h-96 mt-20 mx-10 lg:ml-48 lg:mr-48 ml-10 mr-10">
+      <div className="text-3xl bg-black font-semibold text-white p-4 mb-4 rounded-t-lg">
         Your Posts
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Myposts.map((post: any) => (
           <div
             key={post._id}
-            className="max-w-lg rounded overflow-hidden shadow-lg bg-white"
+            className="max-w-lg rounded overflow-hidden shadow-lg hover:shadow-2xl bg-white"
           >
             <Link href={`/share/${post._id}`}>
               <img

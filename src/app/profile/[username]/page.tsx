@@ -90,17 +90,17 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="border-2 min-h-96 flex justify-around mt-20 border-black ml-48 mr-48">
-        <div className="w-1/2 min-h-96 flex flex-col justify-center gap-y-3 items-center">
+      <div className="border-2 min-h-96 lg:flex justify-around mt-20 border-black rounded-xl shadow-2xl lg:ml-48 lg:mr-48 ml-10 mr-10">
+        <div className="lg:w-1/2 min-h-48 pt-4 lg:pt-0 lg:min-h-96 flex flex-col  lg:justify-center gap-y-3 items-center">
           <img
             src={"/images/signup.png"}
             width={300}
             height={250}
-            className="h rounded-full"
+            className="rounded-full w-[150px] h-[150px] lg:w-[300px] lg:h-[300px]"
             alt="Profile Image"
           />
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center pt-10 lg:pt-0  justify-center pb-5">
           <div className="space-y-4">
             <label htmlFor="Username">Username</label>
             <Input
