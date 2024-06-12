@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ConfirmPassword from "./ConfirmPassword";
+import Sendit from "@/lib/SendIt";
 
 interface UserData {
   email: string;
@@ -40,22 +41,20 @@ const OtpVerifyForgotPassword: React.FC<OtpVerifyProps> = ({ userData }) => {
     },
   });
 
-  if (sendOtp) {
-    const sendingOtp = async () => {
-      try {
-        const otp = Math.floor(Math.random() * 1000000);
-        setOTPCheck(otp.toString());
-        await axios.post("/api/EmailSent", {
-          email: userData.email,
-          otp: otp,
-        });
-      } catch (error) {
-        console.log("Error", error);
-      } 
+  useEffect(() => {
+    const sendingOtp = () => {
+      // console.log("In sending otp function");
+      const otp = Math.floor(Math.random() * 1000000);
+      setOTPCheck(otp.toString());
+      Sendit({
+        to: userData.email,
+        name: "My user",
+        subject: "OTP Verification",
+        body: `Your OTP is ${otp}`,
+      });
     };
     sendingOtp();
-    setSendOtp(false);
-  }
+  }, []);
 
   const onSubmit = async (data: any) => {
     try {

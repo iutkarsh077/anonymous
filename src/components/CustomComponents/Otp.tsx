@@ -17,6 +17,7 @@ import { otpSchema } from "@/schemas/OtpSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Sendit from "@/lib/SendIt";
 
 interface UserData {
   username: string;
@@ -29,7 +30,7 @@ interface OtpVerifyProps {
 }
 
 const OtpVerify: React.FC<OtpVerifyProps> = ({ userData }) => {
-  console.log(userData);
+  // console.log(userData);
   const [otpCheck, setOTPCheck] = useState("");
   const [sendOtp, setSendOtp] = useState(true);
   const router = useRouter();
@@ -40,23 +41,20 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ userData }) => {
     },
   });
 
-  if (sendOtp) {
-    const sendingOtp = async () => {
-      try {
-        const otp = Math.floor(Math.random() * 1000000);
-        setOTPCheck(otp.toString());
-        await axios.post("/api/EmailSent", {
-          username: userData.username,
-          email: userData.email,
-          otp: otp,
-        });
-      } catch (error) {
-        console.log("Error", error);
-      } 
+  useEffect(() => {
+    const sendingOtp = () => {
+      // console.log("In sending otp function");
+      const otp = Math.floor(Math.random() * 1000000);
+      setOTPCheck(otp.toString());
+      Sendit({
+        to: userData.email,
+        name: userData.username,
+        subject: "OTP Verification",
+        body: `Your OTP is ${otp}`,
+      });
     };
     sendingOtp();
-    setSendOtp(false);
-  }
+  }, []);
 
   const onSubmit = async (data: any) => {
     try {
